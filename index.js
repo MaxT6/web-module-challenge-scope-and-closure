@@ -16,7 +16,7 @@
 function processFirstItem(stringList, callback) {
   return callback(stringList[0])
 }
-console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
+//console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
 
 // ⭐️ Example Challenge END ⭐️
 
@@ -27,12 +27,12 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   
   Study the code for counter1 and counter2, then answer the questions below.
   
-  1. What is the difference between counter1 and counter2?
+  1. What is the difference between counter1 and counter2? The difference is that counter1 has closure, and counter2 does not.
   
-  2. Which of the two uses a closure? How can you tell?
+  2. Which of the two uses a closure? How can you tell? counter1 has closure, evidenced by the function counter() nested within the function counterMaker(). The function counter() can reference the variable count while count remains scoped within the variable. counter2 can also reference the variable count, but this variable is global scoped and may be changed outside the function.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+     counter2 be better? counter1 is preferable in a situation where you do not want the variable count altered outside of the function counterMaker. counter2 is preferable when the variable count needs reference in many functions. 
 */
 
 // counter1 code
@@ -45,6 +45,8 @@ function counterMaker() {
 
 const counter1 = counterMaker();
 
+//console.log(counter1(1));
+
 // counter2 code
 let count = 0;
 
@@ -52,6 +54,7 @@ function counter2() {
   return count++;
 }
 
+//console.log(counter2());
 
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
@@ -62,9 +65,13 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  return Math.floor(Math.random() 
+  * 3)
+
 }
+console.log(inning());
+
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -81,9 +88,18 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inning,numOfInnings,){
+  const finalScoreObj = {};
+  function sumAwayInningsScore (i, numOfInnings) {
+    for (let i = 0; i < numOfInnings; i++) { 
+     inning() += i;
+
+  }  finalScore['Away'] = sumAwayInningsScore();
+} 
+  return finalScoreObj;
 }
+
+finalScore(inning,9);
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
